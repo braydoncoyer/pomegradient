@@ -1,4 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
+import { useSession, signIn, signOut } from 'next-auth/client'
+import Image from 'next/image'
 
 interface Props {
   launch: {
@@ -9,13 +11,51 @@ interface Props {
   }
 }
 const IndexPage: NextPage<Props> = ({ launch }) => {
+  const [session] = useSession()
   const date = new Date(launch.timestamp)
+  const handleSignin = (e) => {
+    e.preventDefault()
+    signIn('github')
+  }
+  const handleSignout = (e) => {
+    e.preventDefault()
+    signOut()
+  }
   return (
-    <main>
-      <h1>Next SpaceX Launch: {launch.mission}</h1>
+    <main className="bg-red-500">
+      <h1 className="text-3xl">Next SpaceX Launch: {launch.mission}</h1>
       <p>
         {launch.rocket} will take off from {launch.site} on {date.toDateString()}
       </p>
+      {session && (
+        <a href="#" onClick={handleSignout} className="btn-signin">
+          Sign out
+        </a>
+      )}
+      {session && (
+        <>
+          {' '}
+          <p style={{ marginBottom: '10px' }}>
+            {' '}
+            Welcome, {session.user.name ?? session.user.email}
+          </p>{' '}
+          <br />
+          <Image
+            className="rounded"
+            src={session.user.image}
+            alt="Picture of the author"
+            width={40}
+            height={40}
+          />
+        </>
+      )}
+      {!session && (
+        <>
+          <a href="#" onClick={handleSignin} className="text-2xl">
+            Sign In with GitHub
+          </a>
+        </>
+      )}
     </main>
   )
 }
