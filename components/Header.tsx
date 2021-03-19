@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSession, signIn, signOut } from 'next-auth/client'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function HeaderComponent() {
   const [session] = useSession()
@@ -24,12 +25,11 @@ function HeaderComponent() {
               />
             </div>
             <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-              <a
-                href="#"
-                className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Gradients
-              </a>
+              <Link href="/">
+                <a className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  Gradients
+                </a>
+              </Link>
 
               <a
                 href="#"
@@ -66,6 +66,7 @@ function HeaderComponent() {
                     aria-haspopup="true"
                   >
                     <span className="sr-only">Open user menu</span>
+
                     <Image
                       className="rounded-full"
                       src={session.user.image}
@@ -73,11 +74,6 @@ function HeaderComponent() {
                       width={32}
                       height={32}
                     />
-                    {/* <img
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=y1tFBWbAs5&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    /> */}
                   </button>
                 </div>
               )}
