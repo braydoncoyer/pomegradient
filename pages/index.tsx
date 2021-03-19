@@ -1,18 +1,20 @@
 import { GetStaticProps, NextPage } from 'next'
 import Gradient from '../models/Gradient'
 import { Layout } from '../components/Layout'
-import { GradientCard } from '../components/GradientCard'
+import { GradientCardList } from '../components/GradientCardList'
 
 const IndexPage: NextPage<any> = ({ gradients }) => {
+  if (!gradients) {
+    return (
+      <div>
+        <h2>No gradients to display...</h2>
+      </div>
+    )
+  }
+
   return (
     <Layout>
-      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {gradients.map((item) => (
-          <div key={item.key}>
-            <GradientCard item={item} />
-          </div>
-        ))}
-      </ul>
+      <GradientCardList gradients={gradients} />
     </Layout>
   )
 }
