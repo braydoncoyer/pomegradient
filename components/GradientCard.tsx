@@ -5,7 +5,7 @@ function GradientCard({ item }) {
         <div
           className={`w-32 h-32 flex-shrink-0 mx-auto rounded-full`}
           style={{
-            background: `linear-gradient(90deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`,
+            background: `linear-gradient(135deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`,
           }}
         ></div>
         <h3 className="mt-6 text-gray-900 text-sm font-medium">{item.name}</h3>

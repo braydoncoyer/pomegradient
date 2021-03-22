@@ -6,7 +6,6 @@ import Link from 'next/link'
 function HeaderComponent() {
   const [session] = useSession()
   const [profileOpen, setProfileOpen] = useState(false)
-  console.log(session)
 
   return (
     <nav className="bg-white shadow">
