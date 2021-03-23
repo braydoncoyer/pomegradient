@@ -15,7 +15,7 @@ function FooterComponent() {
         </div>
         <div className="text-md col-span-5">
           <p>
-            <span className="font-bold">I&apos;m Braydon Coyer</span> -- a senior full stack
+            <span className="font-bold">I&apos;m Braydon Coyer</span> - a senior full stack
             engineer, DOM artist and TDD enthusiast.
           </p>
           <a href="https://braydoncoyer.dev">Learn more about me</a>
