@@ -6,7 +6,6 @@ import Link from 'next/link'
 function HeaderComponent() {
   const [session] = useSession()
   const [profileOpen, setProfileOpen] = useState(false)
-  console.log(session)
 
   return (
     <nav className="bg-white shadow">
@@ -77,7 +76,7 @@ function HeaderComponent() {
                   Gradients
                 </a>
               </Link>
-              <a
+              {/* <a
                 href="#"
                 className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
@@ -94,7 +93,7 @@ function HeaderComponent() {
                 className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
                 Calendar
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -103,25 +102,27 @@ function HeaderComponent() {
             <div className="flex items-center">
               {/* New Gradient Button */}
               <div className="flex-shrink-0">
-                <button
-                  type="button"
-                  className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <svg
-                    className="-ml-1 mr-2 h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
+                <Link href="/gradient/new">
+                  <button
+                    type="button"
+                    className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>New Gradient</span>
-                </button>
+                    <svg
+                      className="-ml-1 mr-2 h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>New Gradient</span>
+                  </button>
+                </Link>
               </div>
               <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
                 {/* Desktop Notification Button */}
@@ -175,12 +176,27 @@ function HeaderComponent() {
                       aria-orientation="vertical"
                       aria-labelledby="user-menu"
                     >
+                      <Link href="/profile">
+                        <a
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Your profile
+                        </a>
+                      </Link>
                       <a
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
-                        Your Profile
+                        Your gradients
+                      </a>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                      >
+                        Your favorites
                       </a>
                       <a
                         href="#"
@@ -228,7 +244,7 @@ function HeaderComponent() {
               </a>
             </Link>
 
-            <a
+            {/* <a
               href="#"
               className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
             >
@@ -245,7 +261,7 @@ function HeaderComponent() {
               className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
             >
               Calendar
-            </a>
+            </a> */}
           </div>
           {session && (
             <div className="pt-4 pb-3 border-t border-gray-200">
@@ -286,11 +302,22 @@ function HeaderComponent() {
                 </button>
               </div>
               <div className="mt-3 space-y-1">
+                <Link href="/profile">
+                  <a className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6">
+                    Your profile
+                  </a>
+                </Link>
                 <a
                   href="#"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6"
                 >
-                  Your Profile
+                  Your gradients
+                </a>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6"
+                >
+                  Your favorites
                 </a>
                 <a
                   href="#"

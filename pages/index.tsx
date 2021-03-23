@@ -15,6 +15,7 @@ const IndexPage: NextPage<any> = ({ gradients }) => {
   return (
     <Layout>
       <GradientCardList gradients={gradients} />
+      <div className="h-96 bg-gradient-to-tr from-[#009CFF] via-[#E348A4] to-[#FC6F63]"></div>
     </Layout>
   )
 }
@@ -57,6 +58,24 @@ export const getStaticProps: GetStaticProps<any> = async () => {
       name: 'Dusty Cactus',
       author: 'braydoncoyer',
       colors: ['#fcff9e', '#c67700'],
+    },
+    {
+      id: 6,
+      name: 'Pomegradient',
+      author: 'braydoncoyer',
+      colors: ['#F9974B', '#EF4171'],
+    },
+    {
+      id: 7,
+      name: 'Purple Dusk',
+      author: 'braydoncoyer',
+      colors: ['#737dfe', '#ffcac9'],
+    },
+    {
+      id: 8,
+      name: 'Lush Lime',
+      author: 'braydoncoyer',
+      colors: ['#d6ff7f', '#00b3cc'],
     },
   ]
 
