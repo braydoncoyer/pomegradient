@@ -13,12 +13,14 @@ function GradientCard({ item }) {
   return (
     <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-4">
-        <div
-          className={`w-full h-80 md:h-64 flex-shrink-0 mx-auto rounded`}
-          style={{
-            background: `linear-gradient(135deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`,
-          }}
-        ></div>
+        <Link href={`/gradient/${item.name.toLowerCase()}`}>
+          <div
+            className={`w-full h-80 md:h-64 flex-shrink-0 mx-auto rounded cursor-pointer`}
+            style={{
+              background: `linear-gradient(135deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`,
+            }}
+          ></div>
+        </Link>
         <div className="flex justify-between mt-6">
           <Link href={`/gradient/${item.name.toLowerCase()}`}>
             <h3 className="cursor-pointer text-gray-900 text-md md:text-sm font-medium">
