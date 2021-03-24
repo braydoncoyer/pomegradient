@@ -194,21 +194,21 @@ export const getStaticProps: GetStaticProps<any> = async () => {
     },
     {
       id: 9,
-      name: 'Pomegradient',
+      name: 'Morning Dawn',
       author: 'braydoncoyer',
-      colors: ['#F9974B', '#EF4171'],
+      colors: ['#F3904F', '#3B4371'],
     },
     {
       id: 10,
-      name: 'Purple Dusk',
+      name: 'Honey Dew',
       author: 'braydoncoyer',
-      colors: ['#737dfe', '#ffcac9'],
+      colors: ['#43C6AC', '#F8FFAE'],
     },
     {
       id: 11,
-      name: 'Lush Lime',
+      name: 'Purple Guava',
       author: 'braydoncoyer',
-      colors: ['#d6ff7f', '#00b3cc'],
+      colors: ['#43C6AC', '#9654e2'],
     },
   ]
 
