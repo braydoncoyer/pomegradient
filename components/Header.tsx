@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useSession, signIn, signOut } from 'next-auth/client'
+import { useAuth } from '../lib/auth'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
 function HeaderComponent() {
-  const [session] = useSession()
+  const { auth, signOut, signInWithGitHub } = useAuth()
   const [profileOpen, setProfileOpen] = useState(false)
 
   return (
@@ -76,29 +77,11 @@ function HeaderComponent() {
                   Gradients
                 </a>
               </Link>
-              {/* <a
-                href="#"
-                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Team
-              </a>
-              <a
-                href="#"
-                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Projects
-              </a>
-              <a
-                href="#"
-                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Calendar
-              </a> */}
             </div>
           </div>
 
           {/* desktop icons */}
-          {session && (
+          {auth && (
             <div className="flex items-center">
               {/* New Gradient Button */}
               <div className="flex-shrink-0">
@@ -160,7 +143,7 @@ function HeaderComponent() {
                       <span className="sr-only">Open user menu</span>
                       <Image
                         className="rounded-full"
-                        src={session.user.image}
+                        src={auth.photoUrl}
                         alt="Picture of user"
                         width={32}
                         height={32}
@@ -220,10 +203,10 @@ function HeaderComponent() {
           )}
 
           {/* Sign in Button */}
-          {!session && (
+          {!auth && (
             <div className="flex items-center">
               <button
-                onClick={() => signIn('github')}
+                onClick={() => signInWithGitHub()}
                 type="button"
                 className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
@@ -243,42 +226,23 @@ function HeaderComponent() {
                 Gradients
               </a>
             </Link>
-
-            {/* <a
-              href="#"
-              className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
-            >
-              Team
-            </a>
-            <a
-              href="#"
-              className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
-            >
-              Projects
-            </a>
-            <a
-              href="#"
-              className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
-            >
-              Calendar
-            </a> */}
           </div>
-          {session && (
+          {auth && (
             <div className="pt-4 pb-3 border-t border-gray-200">
               <div className="flex items-center px-4 sm:px-6">
                 <div className="flex-shrink-0">
                   <Image
                     className="rounded-full"
-                    src={session.user.image}
+                    src={auth.photoUrl}
                     alt="Picture of user"
                     width={40}
                     height={40}
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">{session.user.name}</div>
-                  {session.user.email && (
-                    <div className="text-sm font-medium text-gray-500">tom@example.com</div>
+                  <div className="text-base font-medium text-gray-800">{auth.name}</div>
+                  {auth.email && (
+                    <div className="text-sm font-medium text-gray-500">{auth.email}</div>
                   )}
                 </div>
                 <button className="ml-auto flex-shrink-0 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

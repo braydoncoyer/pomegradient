@@ -2,9 +2,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Layout } from '../components/Layout'
 import { NextPage } from 'next'
-import { getSession } from 'next-auth/client'
+import { useAuth } from '../lib/auth'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 const ProfilePage: NextPage = () => {
+  const { auth, loading } = useAuth()
+
+  const router = useRouter()
+
+  useEffect(() => {
+    console.table(auth)
+    if (!auth) {
+      router.push('/')
+    }
+  }, [auth, loading])
   return (
     <Layout>
       <div>
@@ -443,19 +455,3 @@ const ProfilePage: NextPage = () => {
 }
 
 export default ProfilePage
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-
-  if (!session) {
-    context.res.statusCode = 302
-    context.res.setHeader('Location', '/')
-    return {
-      props: {},
-    }
-  }
-
-  return {
-    props: { session },
-  }
-}
