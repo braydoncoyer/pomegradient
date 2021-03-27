@@ -2,10 +2,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Layout } from '../../components/Layout'
 import { NextPage } from 'next'
-import { getSession } from 'next-auth/client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useAuth } from '../../lib/auth'
+import { useRouter } from 'next/router'
 
 const NewGradientPage: NextPage = () => {
+  const { auth, loading } = useAuth()
+
+  const router = useRouter()
+
+  useEffect(() => {
+    console.table(auth)
+    if (!auth) {
+      router.push('/')
+    }
+  }, [auth, loading])
+
   const [values, setValues] = useState({
     gradientName: '',
     color1: '',
@@ -142,19 +154,3 @@ const NewGradientPage: NextPage = () => {
 }
 
 export default NewGradientPage
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-
-  if (!session) {
-    context.res.statusCode = 302
-    context.res.setHeader('Location', '/')
-    return {
-      props: {},
-    }
-  }
-
-  return {
-    props: { session },
-  }
-}

@@ -3,10 +3,8 @@ import Gradient from '../models/Gradient'
 import { Layout } from '../components/Layout'
 import { GradientCardList } from '../components/GradientCardList'
 import { useState } from 'react'
-import { useSession, signIn } from 'next-auth/client'
 
 const IndexPage: NextPage<any> = ({ gradients }) => {
-  const [session] = useSession()
   const [sortOptionOpen, setSortOptionOpen] = useState(false)
   // const [sortValue, setSortValue] = useState('recent')
 
@@ -20,53 +18,6 @@ const IndexPage: NextPage<any> = ({ gradients }) => {
 
   return (
     <Layout footer>
-      {!session && (
-        <div className="relative mb-12 ">
-          <div className="mx-auto w-full">
-            <div className="relative rounded-2xl px-6 py-10 bg-gradient-to-r from-[#737dfe] to-[#ffcac9] overflow-hidden shadow-xl sm:px-12 ">
-              <div aria-hidden="true" className="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0">
-                <svg
-                  className="absolute inset-0 h-full w-full"
-                  preserveAspectRatio="xMidYMid slice"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 1463 360"
-                >
-                  <path
-                    className="text-purple-400 text-opacity-40"
-                    fill="currentColor"
-                    d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z"
-                  />
-                  <path
-                    className="text-purple-600 text-opacity-40"
-                    fill="currentColor"
-                    d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z"
-                  />
-                </svg>
-              </div>
-              <div className="relative">
-                <div className="sm:text-center">
-                  <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-                    Sign in to create gradients
-                  </h2>
-                  <p className="mt-3 md:mt-6 mx-auto max-w-2xl text-lg text-purple-100">
-                    Discover gradients. Share gradients. Love gradients.
-                  </p>
-                </div>
-                <div className="flex items-center mt-3 md:mt-6">
-                  <button
-                    onClick={() => signIn('github')}
-                    type="button"
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Sign in with GitHub
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="flex items-center mb-6">
         <h2 className="flex-1 text-2xl font-bold leading-7  sm:text-3xl sm:truncate">Gradients</h2>
         <div className="relative">
