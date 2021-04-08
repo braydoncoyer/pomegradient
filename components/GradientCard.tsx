@@ -2,6 +2,8 @@ import copy from 'copy-to-clipboard'
 import Link from 'next/link'
 
 function GradientCard({ item }) {
+  const { author } = item
+
   const handleCopyToClipBoard = () => {
     copy(`
     background: ${item.colors[0]};
@@ -13,7 +15,7 @@ function GradientCard({ item }) {
   return (
     <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-4">
-        <Link href={`/gradient/${item.name.toLowerCase()}`}>
+        <Link href={`/gradients/${item.gradientName.toLowerCase()}`}>
           <div
             className={`w-full h-80 md:h-64 flex-shrink-0 mx-auto rounded cursor-pointer`}
             style={{
@@ -22,9 +24,9 @@ function GradientCard({ item }) {
           ></div>
         </Link>
         <div className="flex justify-between mt-6">
-          <Link href={`/gradient/${item.name.toLowerCase()}`}>
+          <Link href={`/gradients/${item.gradientName.toLowerCase()}`}>
             <h3 className="cursor-pointer text-gray-900 text-md md:text-sm font-medium">
-              {item.name}
+              {item.gradientName}
             </h3>
           </Link>
           <svg
@@ -46,11 +48,11 @@ function GradientCard({ item }) {
         <div className="flex justify-between mt-1">
           <a
             className="text-gray-500 text-md md:text-sm cursor-pointer"
-            href={`https://github.com/${item.author}`}
+            href={`https://github.com/${author.name.split(' ').join('')}`}
             target="_blank"
             rel="noreferrer"
           >
-            by {item.author}
+            by {author.name}
           </a>
           <svg
             className="w-6 h-6 md:w-5 md:h-5 cursor-pointer text-gray-500 hover:text-gray-600"

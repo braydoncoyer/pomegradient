@@ -5,6 +5,7 @@ import { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../lib/auth'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 const NewGradientPage: NextPage = () => {
   const { auth, loading } = useAuth()
@@ -46,6 +47,11 @@ const NewGradientPage: NextPage = () => {
       ...values,
       color2: event.target.value,
     }))
+  }
+
+  async function handleCreateGradient(): Promise<any> {
+    const { gradientName, color1, color2 } = values
+    await axios.post('/api/gradients', { gradientName, colors: [color1, color2] })
   }
 
   function canCreateGradient(): boolean {
@@ -138,7 +144,7 @@ const NewGradientPage: NextPage = () => {
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
                     disabled={canCreateGradient()}
-                    onClick={() => console.log(values)}
+                    onClick={handleCreateGradient}
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Create Gradient
