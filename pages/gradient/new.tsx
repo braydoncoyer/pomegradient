@@ -2,22 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Layout } from '../../components/Layout'
 import { NextPage } from 'next'
-import { useState, useEffect } from 'react'
-import { useAuth } from '../../lib/auth'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const NewGradientPage: NextPage = () => {
-  const { auth, loading } = useAuth()
-
-  const router = useRouter()
-
-  useEffect(() => {
-    console.table(auth)
-    if (!auth) {
-      router.push('/')
-    }
-  }, [auth, loading])
-
   const [values, setValues] = useState({
     gradientName: '',
     color1: '',

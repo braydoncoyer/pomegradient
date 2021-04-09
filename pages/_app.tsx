@@ -1,21 +1,20 @@
 import { AppProps } from 'next/app'
-import { AuthProvider } from '../lib/auth'
 // import { Provider } from 'next-auth/client'
 import { HeaderComponent } from '../components/Header'
+import { UserContext } from '../lib/context'
+
+import { useUserData } from '../lib/hooks'
 
 // Needed for Tailwind
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const userData = useUserData()
   return (
-    // <Provider session={pageProps.session}>
-    //   <HeaderComponent />
-    //   <Component {...pageProps} />
-    // </Provider>
-    <AuthProvider>
+    <UserContext.Provider value={userData}>
       <HeaderComponent />
       <Component {...pageProps} />
-    </AuthProvider>
+    </UserContext.Provider>
   )
 }
 

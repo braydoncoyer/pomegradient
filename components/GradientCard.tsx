@@ -13,7 +13,7 @@ function GradientCard({ item }) {
   return (
     <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-4">
-        <Link href={`/gradient/${item.name.toLowerCase()}`}>
+        <Link href={`/${item.username}/${item.slug}`}>
           <div
             className={`w-full h-80 md:h-64 flex-shrink-0 mx-auto rounded cursor-pointer`}
             style={{
@@ -22,7 +22,7 @@ function GradientCard({ item }) {
           ></div>
         </Link>
         <div className="flex justify-between mt-6">
-          <Link href={`/gradient/${item.name.toLowerCase()}`}>
+          <Link href={`/${item.username}/${item.slug}`}>
             <h3 className="cursor-pointer text-gray-900 text-md md:text-sm font-medium">
               {item.name}
             </h3>
@@ -44,14 +44,12 @@ function GradientCard({ item }) {
           </svg>
         </div>
         <div className="flex justify-between mt-1">
-          <a
-            className="text-gray-500 text-md md:text-sm cursor-pointer"
-            href={`https://github.com/${item.author}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            by {item.author}
-          </a>
+          <Link href={`/${item.username}`}>
+            <a className="text-gray-500 text-md md:text-sm cursor-pointer" rel="noreferrer">
+              by {item.username}
+            </a>
+          </Link>
+
           <svg
             className="w-6 h-6 md:w-5 md:h-5 cursor-pointer text-gray-500 hover:text-gray-600"
             xmlns="http://www.w3.org/2000/svg"
