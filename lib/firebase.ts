@@ -58,3 +58,23 @@ export function postToJSON(doc) {
     updatedAt: data?.updatedAt.toMillis() || 0,
   }
 }
+
+/**`
+ * Gets a reference to a list of gradients passed in
+ * @param  gradients
+ */
+export async function getGradientRefs(gradients) {
+  const userDocs = gradients.map((doc) => {
+    return getUserWithUsername(doc.username)
+  })
+
+  console.log('User Doc Array', userDocs)
+
+  const gradientRefs = userDocs.map((user, index) => {
+    return user.ref?.collection('gradients').doc(gradients[index].slug)
+  })
+
+  console.log('server refs', gradientRefs)
+
+  return gradientRefs
+}

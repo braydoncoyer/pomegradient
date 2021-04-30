@@ -3,17 +3,30 @@ import GradientContent from '../../components/GradientContent'
 import { Layout } from '../../components/Layout'
 import { firestore, getUserWithUsername, postToJSON } from '../../lib/firebase'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
+import Heart from '../../components/HeartButton'
+import AuthCheck from '../../components/AuthCheck'
+import Link from 'next/link'
 
 const GradientPage: NextPage<any> = (props) => {
   const gradientRef = firestore.doc(props.path)
   const [realtimeGradient] = useDocumentData(gradientRef)
 
   const gradient = realtimeGradient || props.gradient
+
   return (
-    <Layout>
-      {JSON.stringify(gradient)}
-      <GradientContent gradient={gradient} />
-    </Layout>
+    <AuthCheck
+      fallback={
+        <Link href="/">
+          <button>Sign up</button>
+        </Link>
+      }
+    >
+      <Layout>
+        {JSON.stringify(gradient)}
+        <GradientContent gradient={gradient} />
+        <Heart gradientRef={gradientRef} />
+      </Layout>
+    </AuthCheck>
   )
 }
 export default GradientPage
@@ -26,10 +39,10 @@ export async function getStaticProps({ params }) {
   let path
 
   if (userDoc) {
-    const postRef = userDoc.ref.collection('gradients').doc(slug)
-    gradient = postToJSON(await postRef.get())
+    const gradientRef = userDoc.ref.collection('gradients').doc(slug)
+    gradient = postToJSON(await gradientRef.get())
 
-    path = postRef.path
+    path = gradientRef.path
   }
 
   return {
@@ -39,7 +52,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  // Improve my using Admin SDK to select empty docs
+  // Improve by using Admin SDK to select empty docs
   const snapshot = await firestore.collectionGroup('gradients').get()
 
   const paths = snapshot.docs.map((doc) => {

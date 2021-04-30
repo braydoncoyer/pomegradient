@@ -1,6 +1,5 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { PlusIcon } from '@heroicons/react/solid'
 import { Fragment } from 'react'
 import { auth, googleAuthProvider } from '../lib/firebase'
 import { useContext } from 'react'
@@ -13,8 +12,6 @@ function classNames(...classes) {
 
 function HeaderComponent() {
   const { user, username } = useContext(UserContext)
-
-  console.log(user)
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -69,13 +66,20 @@ function HeaderComponent() {
               {user ? (
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <button
+                    <Link href="/new">
+                      <a
+                        className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        style={{
+                          background: `linear-gradient(90deg, #FF8D50 25%, #FC3FB7 100%)`,
+                        }}
+                      >
+                        <span>New Gradient</span>
+                      </a>
+                    </Link>
+                    {/* <button
                       type="button"
                       className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                      <span>New Gradient</span>
-                    </button>
+                    ></button> */}
                   </div>
                   <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
                     <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
