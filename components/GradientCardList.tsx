@@ -1,4 +1,5 @@
 import { GradientCard } from './GradientCard'
+
 function GradientCardList({ gradients }) {
   if (!gradients) {
     return null

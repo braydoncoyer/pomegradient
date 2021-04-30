@@ -7,7 +7,7 @@ import { firestore, fromMillis, postToJSON } from '../lib/firebase'
 import { useState } from 'react'
 
 // Max post to query per page
-const LIMIT = 1
+const LIMIT = 12
 
 const IndexPage: NextPage<any> = (props) => {
   const [gradients, setGradients] = useState(props.gradients)
@@ -64,9 +64,20 @@ export const getServerSideProps: GetServerSideProps<any> = async () => {
   const gradientsQuery = firestore
     .collectionGroup('gradients')
     .orderBy('createdAt', 'desc')
-    .limit(20)
+    .limit(12)
 
   const gradients = (await gradientsQuery.get()).docs.map(postToJSON)
+
+  // const refs = gradients.map(async (doc) => {
+  //   const userDoc = await getUserWithUsername(doc.username)
+  //   if (userDoc) {
+  //     return userDoc.ref.collection('gradients').doc(doc.slug)
+  //   }
+  // })
+
+  // const gradientRefs = refs.get().docs.map(postToJSON)
+
+  // console.log(gradientRefs)
   // const mockGradientData: Gradient[] = [
   //   {
   //     id: 0,
