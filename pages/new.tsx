@@ -9,6 +9,7 @@ import { UserContext } from '../lib/context'
 
 import kebabCase from 'lodash.kebabcase'
 import { auth, firestore, serverTimestamp } from '../lib/firebase'
+import { Button } from '../components/Button'
 
 const NewGradientPage: NextPage = () => {
   const router = useRouter()
@@ -104,7 +105,7 @@ const NewGradientPage: NextPage = () => {
                           type="text"
                           name="gradient_name"
                           id="gradient_name"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
+                          className="focus:ring-orange-400 focus:border-orange-400 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
                           placeholder="Grassy Green"
                           value={values.gradientName}
                           onChange={handleGradientNameInputChange}
@@ -121,7 +122,7 @@ const NewGradientPage: NextPage = () => {
                           type="text"
                           name="hex1"
                           id="hex1"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
+                          className="focus:ring-orange-400 focus:border-orange-400 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
                           placeholder="#000000"
                           value={values.color1}
                           onChange={handleColor1InputChange}
@@ -138,7 +139,7 @@ const NewGradientPage: NextPage = () => {
                           type="text"
                           name="hex2"
                           id="hex2"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
+                          className="focus:ring-orange-400 focus:border-orange-400 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
                           placeholder="#000000"
                           value={values.color2}
                           onChange={handleColor2InputChange}
@@ -161,13 +162,9 @@ const NewGradientPage: NextPage = () => {
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
-                      disabled={!isValid}
-                      onClick={createGradient}
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
+                    <Button handleButtonClick={createGradient} isDisabled={!isValid}>
                       Create Gradient
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </form>
