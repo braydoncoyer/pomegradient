@@ -54,9 +54,7 @@ function GradientCard({ item }) {
           className={`bg-white rounded-2xl ${showDetails ? 'h-[161px]' : 'h-[83px]'}  w-full p-4`}
         >
           <div className="flex items-center justify-between">
-            <Link href={`/${item.username}/${item.slug}`}>
-              <h3 className="cursor-pointer text-gray-800 text-lg font-semibold">{item.name}</h3>
-            </Link>
+            <p className="text-gray-800 text-lg font-semibold">{item.name}</p>
             <button onClick={() => setShowDetails(!showDetails)}>
               <InformationCircleIcon className="w-5 h-5 text-gray-500" />
             </button>

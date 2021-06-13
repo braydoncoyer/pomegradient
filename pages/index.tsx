@@ -1,10 +1,14 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { Layout } from '../components/Layout'
 import { GradientCardList } from '../components/GradientCardList'
+import { Button } from '../components/Button'
+import { PlusSmIcon } from '@heroicons/react/solid'
 
 import { firestore, fromMillis, postToJSON } from '../lib/firebase'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import Link from 'next/link'
+import { UserContext } from '../lib/context'
 
 // Max post to query per page
 const LIMIT = 12
@@ -12,8 +16,8 @@ const LIMIT = 12
 const IndexPage: NextPage<any> = (props) => {
   const [gradients, setGradients] = useState(props.gradients)
   const [loading, setLoading] = useState(false)
-
   const [gradientsEnd, setGradientsEnd] = useState(false)
+  const { user } = useContext(UserContext)
 
   const getMoreGradients = async () => {
     setLoading(true)
@@ -47,14 +51,39 @@ const IndexPage: NextPage<any> = (props) => {
 
   return (
     <Layout>
-      <div className="flex items-center mb-6">
-        <h2 className="flex-1 text-2xl font-bold leading-7  sm:text-3xl sm:truncate">Gradients</h2>
+      <div className="pb-5 mb-8 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+        <h3 className="text-lg leading-6 font-medium text-gray-900">Gradients</h3>
+        {user && (
+          <div className="mt-3 sm:mt-0 sm:ml-4">
+            <Link href="/new">
+              <a>
+                <Button>New Gradient</Button>
+              </a>
+            </Link>
+          </div>
+        )}
       </div>
       <GradientCardList gradients={gradients} />
 
-      {!loading && !gradientsEnd && <button onClick={getMoreGradients}>Load more</button>}
+      {!loading && !gradientsEnd && (
+        <div className="relative mt-12">
+          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+            <div className="w-full border-t border-gray-300" />
+          </div>
+          <div className="relative flex justify-center">
+            <button
+              onClick={getMoreGradients}
+              type="button"
+              className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+            >
+              <PlusSmIcon className="-ml-1.5 mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+              <span>Load More</span>
+            </button>
+          </div>
+        </div>
+      )}
 
-      {gradientsEnd && 'You have reached the end!'}
+      {/* {gradientsEnd && 'You have reached the end!'} */}
     </Layout>
   )
 }
