@@ -2,6 +2,7 @@ import copy from 'copy-to-clipboard'
 import Link from 'next/link'
 import { useState } from 'react'
 import { HeartIcon, InformationCircleIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
+import { toast } from 'react-toastify'
 
 function GradientCard({ item }) {
   // console.log('item', item)
@@ -11,6 +12,8 @@ function GradientCard({ item }) {
     background: -webkit-linear-gradient(to right, ${item.colors[0]}, ${item.colors[1]});  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, ${item.colors[0]}, ${item.colors[1]}); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     `)
+
+    toast('CSS copied!')
   }
 
   const [showDetails, setShowDetails] = useState(false)

@@ -1,6 +1,4 @@
-import { FooterComponent } from './Footer'
-
-function Layout({ children, footer = false }) {
+function Layout({ children }) {
   return (
     <>
       <div className="min-h-screen bg-gray-100">
@@ -9,11 +7,6 @@ function Layout({ children, footer = false }) {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">{children}</div>
           </main>
         </div>
-        {footer && (
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <FooterComponent />
-          </div>
-        )}
       </div>
     </>
   )
