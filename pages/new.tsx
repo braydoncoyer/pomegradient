@@ -10,6 +10,8 @@ import { UserContext } from '../lib/context'
 import kebabCase from 'lodash.kebabcase'
 import { auth, firestore, serverTimestamp } from '../lib/firebase'
 import { Button } from '../components/Button'
+import { determineIsProfane } from '../lib/badWords'
+import { toast } from 'react-toastify'
 
 const NewGradientPage: NextPage = () => {
   const router = useRouter()
@@ -71,10 +73,20 @@ const NewGradientPage: NextPage = () => {
       heartCount: 0,
     }
 
-    await ref.set(data)
+    const isDirtyContent =
+      determineIsProfane(values.gradientName) ||
+      determineIsProfane(values.color1) ||
+      determineIsProfane(values.color1)
 
-    // Imperative navigation after doc is set
-    router.push(`/`)
+    if (!isDirtyContent) {
+      await ref.set(data)
+      toast('Gradient created!')
+
+      // Imperative navigation after doc is set
+      router.push(`/`)
+    } else {
+      toast.error('Please avoid using swear words.')
+    }
   }
 
   return (
