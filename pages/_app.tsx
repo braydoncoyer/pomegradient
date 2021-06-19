@@ -1,10 +1,7 @@
 import { AppProps } from 'next/app'
-// import { Provider } from 'next-auth/client'
 import { HeaderComponent } from '../components/Header'
-import Footer from '../components/Footer'
-import { UserContext } from '../lib/context'
+import { Hero } from '../components/Hero'
 
-import { useUserData } from '../lib/hooks'
 import { ToastContainer } from 'react-toastify'
 import PlausibleProvider from 'next-plausible'
 
@@ -13,16 +10,15 @@ import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const userData = useUserData()
   return (
-    <UserContext.Provider value={userData}>
-      <HeaderComponent />
+    <>
+      {/* <HeaderComponent /> */}
+      <Hero />
       <PlausibleProvider domain="pomegradient.com">
         <Component {...pageProps} />
       </PlausibleProvider>
       <ToastContainer />
-      <Footer />
-    </UserContext.Provider>
+    </>
   )
 }
 
