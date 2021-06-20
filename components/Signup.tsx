@@ -1,6 +1,6 @@
 function SignupForm() {
   return (
-    <div className="md:flex md:justify-start">
+    <div className="md:flex md:justify-start space-y-4">
       <input
         placeholder="Enter your email"
         className="block w-full border border-transparent rounded-md text-base text-gray-900 placeholder-gray-300 focus:placeholder-gray-400 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-500"

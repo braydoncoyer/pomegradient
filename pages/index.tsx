@@ -1,7 +1,15 @@
 import { NextPage } from 'next'
-import { Layout } from '../components/Layout'
+import React from 'react'
+import { Hero } from '../components/Hero'
 
 const IndexPage: NextPage<any> = () => {
-  return <Layout>Test</Layout>
+  return (
+    <div>
+      <Hero />
+      <div className="max-w-10xl mx-auto">
+        <p>Content here</p>
+      </div>
+    </div>
+  )
 }
 export default IndexPage
