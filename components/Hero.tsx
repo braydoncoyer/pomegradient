@@ -8,6 +8,7 @@ import fetcher from '../lib/fetcher'
 function Hero() {
   const { register, handleSubmit } = useForm()
   const [subscribeStatus, setSubscribeStatus] = useState(null)
+  const [formErrorMessage, setFormErrorMessage] = useState(null)
   const { data } = useSWR('/api/pomegradient/subscribers', fetcher)
   const subscriberCount = new Number(data?.count)
 
@@ -16,8 +17,9 @@ function Hero() {
       .post('/api/pomegradient/newsletter', { data })
       .then(() => setSubscribeStatus('success'))
       .catch((err) => {
-        console.table(err)
+        const { error } = err.response.data
         setSubscribeStatus('failed')
+        setFormErrorMessage(error)
       })
   }
 
@@ -101,7 +103,7 @@ function Hero() {
                 d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <span>Uh oh! There was an error. Try again later.</span>
+            <span>{formErrorMessage}</span>
           </div>
         ) : null}
         <p className="mt-2 text-base text-[#D1D5DB]">
