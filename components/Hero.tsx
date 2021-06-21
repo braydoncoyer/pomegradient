@@ -26,7 +26,7 @@ function Hero() {
   return (
     <div className="w-full bg-gradient-to-r from-purple-700 to-pink-600 px-4 sm:px-6 lg:px-16">
       <HeaderComponent />
-      <div className="max-w-10xl mx-auto pt-12 pb-16">
+      <div className="max-w-7xl mx-auto pt-12 pb-16">
         <h1 className="text-left font-display text-white text-3xl leading-9 font-semibold sm:text-4xl sm:leading-10">
           {' '}
           Beautiful hand-crafted gradients,{' '}

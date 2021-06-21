@@ -36,7 +36,9 @@ const IndexPage: NextPage<any> = () => {
       <div className="min-h-screen flex flex-col">
         <div className="flex-1">
           <Hero />
-          <Image width="1800px" height="500" src="/pomegradient_app.svg" alt="Pomegradient App" />
+          <div className="w-full flex justify-center">
+            <Image width="1500px" height="500" src="/pomegradient_app.svg" alt="Pomegradient App" />
+          </div>
           <div className="max-w-10xl flex justify-center px-4">
             <PersonalNewsletter />
           </div>
