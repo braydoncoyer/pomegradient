@@ -10,7 +10,7 @@ export default async (req, res) => {
   try {
     const API_KEY = process.env.BUTTONDOWN_API_KEY_BRAYDONCOYER
     const response = await fetch(`https://api.buttondown.email/v1/subscribers`, {
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, tags: ['projects']}),
       headers: {
         Authorization: `Token ${API_KEY}`,
         'Content-Type': 'application/json',
