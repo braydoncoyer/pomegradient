@@ -1,4 +1,5 @@
 import { HeaderComponent } from './Header'
+import Link from 'next/link'
 
 function Hero() {
   return (
@@ -12,27 +13,26 @@ function Hero() {
             <span className="sm:block text-purple-300">curated by the community.</span>
           </h1>
           <div className="md:flex md:justify-center lg:justify-end md:items-center md:space-x-4 md:flex-1 md:space-y-0">
-            <button
-              type="button"
-              className="w-full mb-6 md:mb-0 md:max-w-[200px] space-x-2 inline-flex items-center justify-center text-pink-600 hover:text-[#831843] font-medium bg-white rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-white border-opacity-10 transform hover:-translate-y-0.5 transition-all duration-150 md:flex"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                />
-              </svg>
+            <Link href="/new">
+              <a className="w-full mb-6 md:mb-0 md:max-w-[200px] space-x-2 inline-flex items-center justify-center text-pink-600 hover:text-[#831843] font-medium bg-white rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-white border-opacity-10 transform hover:-translate-y-0.5 transition-all duration-150 md:flex">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
 
-              <span>Add Gradient</span>
-            </button>
+                <span>Add Gradient</span>
+              </a>
+            </Link>
             <a
               href="https://github.com/braydoncoyer/pomegradient/tree/main"
               target="_blank"
