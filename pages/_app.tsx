@@ -1,7 +1,6 @@
 import { AppProps } from 'next/app'
 // import { Provider } from 'next-auth/client'
-import { HeaderComponent } from '../components/Header'
-import Footer from '../components/Footer'
+import { Footer } from '../components/Footer'
 import { UserContext } from '../lib/context'
 
 import { useUserData } from '../lib/hooks'
@@ -16,7 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const userData = useUserData()
   return (
     <UserContext.Provider value={userData}>
-      <HeaderComponent />
       <PlausibleProvider domain="pomegradient.com">
         <Component {...pageProps} />
       </PlausibleProvider>
