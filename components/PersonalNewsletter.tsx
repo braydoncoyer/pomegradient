@@ -9,13 +9,20 @@ function PersonalNewsletter() {
   const [formErrorMessage, setFormErrorMessage] = useState(null)
 
   const handlePersonalSubmit = (data) => {
-    console.log('submit')
+    axios
+      .post('/api/braydoncoyer/newsletter', { data })
+      .then(() => setSubscribeStatus('success'))
+      .catch((err) => {
+        const { error } = err.response.data
+        setSubscribeStatus('failed')
+        setFormErrorMessage(error)
+      })
   }
 
   return (
     <div className="max-w-2xl">
       <div className="space-y-3">
-        <p className="text-base text-[#374151]">
+        <p className="text-base md:text-lg text-[#374151]">
           Join my newsletter to hear about new projects, content and articles that I publish.
         </p>
         <form onSubmit={handleSubmit(handlePersonalSubmit)} className="block md:flex">
@@ -55,17 +62,78 @@ function PersonalNewsletter() {
             </button>
           </div>
         </form>
+        {subscribeStatus && subscribeStatus === 'success' ? (
+          <div className="mt-2 text-base text-emerald-500 flex space-x-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>Success! You are on the mailing list!</span>
+          </div>
+        ) : subscribeStatus === 'failed' ? (
+          <div className="mt-2 text-base text-pink-500 flex space-x-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{formErrorMessage}</span>
+          </div>
+        ) : null}
       </div>
 
-      <div className="mt-8 flex justify-start items-center">
-        {/* <Image src={braydonProfilePic} alt="Braydon Coyer" /> */}
-        <p className="text-base text-[#374151]">
-          <span className="font-bold block">Hey there,</span> I’m Braydon - a full-stack developer,
-          blogger and the creator of this web app.{' '}
-          <span className="md:block">
-            I love all things related to front-end development and love connecting with individuals.
-          </span>
-        </p>
+      <div className="flex mt-10">
+        <div className="mr-4 flex-shrink-0 self-center">
+          <Image
+            className="rounded-full"
+            width="80"
+            height="80"
+            src="/avatar.jpg"
+            alt="Braydon Coyer"
+          />
+        </div>
+        <div>
+          <p className="text-base text-[#374151]">
+            <span className="font-bold block">
+              Hey there,{' '}
+              <span role="img" aria-label="wave">
+                👋
+              </span>
+            </span>{' '}
+            I’m Braydon - a full-stack developer, blogger and the creator of this web app.{' '}
+            <span className="hidden md:block">
+              I love all things related to front-end development and love connecting with
+              individuals.
+            </span>
+          </p>
+          <a
+            className="text-[#CF4BAD] underline italics hover:text-pink-700"
+            href="https://braydoncoyer.dev/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Learn more about me
+          </a>
+        </div>
       </div>
     </div>
   )
