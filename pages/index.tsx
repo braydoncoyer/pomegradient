@@ -58,17 +58,6 @@ const IndexPage: NextPage<any> = (props) => {
         <Hero />
       </div>
       <Layout>
-        <div className="pb-5 mb-8 sm:flex sm:items-center sm:justify-between">
-          {user && (
-            <div className="mt-3 sm:mt-0 sm:ml-4">
-              <Link href="/new">
-                <a>
-                  <Button>New Gradient</Button>
-                </a>
-              </Link>
-            </div>
-          )}
-        </div>
         <GradientCardList gradients={gradients} />
 
         {!loading && !gradientsEnd && (
