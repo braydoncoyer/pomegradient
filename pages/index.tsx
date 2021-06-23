@@ -12,6 +12,7 @@ import { firestore, fromMillis, postToJSON } from '../lib/firebase'
 import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { UserContext } from '../lib/context'
+import { PersonalNewsletter } from '../components/PersonalNewsletter'
 
 // Max post to query per page
 const LIMIT = 12
@@ -77,6 +78,9 @@ const IndexPage: NextPage<any> = (props) => {
             </div>
           </div>
         )}
+        <div className="mt-24 flex justify-center">
+          <PersonalNewsletter />
+        </div>
 
         {/* {gradientsEnd && 'You have reached the end!'} */}
       </Layout>
