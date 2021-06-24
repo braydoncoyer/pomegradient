@@ -6,6 +6,7 @@ import { UserContext } from '../lib/context'
 import { useUserData } from '../lib/hooks'
 import { ToastContainer } from 'react-toastify'
 import PlausibleProvider from 'next-plausible'
+import Head from 'next/head'
 
 // Needed for Tailwind
 import '../styles/globals.css'
@@ -14,13 +15,18 @@ import 'react-toastify/dist/ReactToastify.css'
 function MyApp({ Component, pageProps }: AppProps) {
   const userData = useUserData()
   return (
-    <UserContext.Provider value={userData}>
-      <PlausibleProvider domain="pomegradient.com">
-        <Component {...pageProps} />
-      </PlausibleProvider>
-      <ToastContainer />
-      <Footer />
-    </UserContext.Provider>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.png" />
+      </Head>
+      <UserContext.Provider value={userData}>
+        <PlausibleProvider domain="pomegradient.com">
+          <Component {...pageProps} />
+        </PlausibleProvider>
+        <ToastContainer />
+        <Footer />
+      </UserContext.Provider>
+    </>
   )
 }
 

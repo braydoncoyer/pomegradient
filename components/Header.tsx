@@ -31,7 +31,8 @@ function HeaderComponent() {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <Link href="/">
-                    <p className="text-xl leading-8 font-bold text-[#D8B4FE]">Pomegradient</p>
+                    <img className="w-48" src="/pomegradient_logo.png" alt="Pomegradient" />
+                    {/* <p className="text-xl leading-8 font-bold text-[#D8B4FE]">Pomegradient</p> */}
                   </Link>
                 </div>
               </div>
