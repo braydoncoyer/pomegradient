@@ -23,7 +23,7 @@ function GradientCard({ item }) {
       ></div>
       <div className="h-[70px] p-[9px] bg-white">
         <div className="flex justify-between items-center">
-          <Link href={`/gradient/${item.name}`}>
+          <Link href={`/${item.username}/${item.slug}`}>
             <a
               className={`text-lg font-extrabold leading-none`}
               style={{
@@ -33,6 +33,17 @@ function GradientCard({ item }) {
               {item.name}
             </a>
           </Link>
+
+          {/* <Link href={`/gradient/${item.name}`}>
+            <a
+              className={`text-lg font-extrabold leading-none`}
+              style={{
+                color: item.colors[0],
+              }}
+            >
+              {item.name}
+            </a>
+          </Link> */}
 
           <button className="focus:outline-none" onClick={handleCopyToClipBoard}>
             <svg
