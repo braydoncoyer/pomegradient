@@ -99,6 +99,34 @@ const GradientPage: NextPage<any> = (props) => {
                 </button>
               </div>
             </div>
+            <div className="mt-6">
+              <ul className="flex justify-start space-x-6">
+                <li className="w-36 h-48 shadow-xl overflow-hidden rounded-lg flex flex-col">
+                  <div
+                    className="flex-1"
+                    style={{
+                      background: `${gradient.colors[0]}`,
+                    }}
+                  ></div>
+                  <div className="h-12 px-3 pt-1 bg-white">
+                    <p className="text-sm text-[#374151] font-bold">{gradient.colors[0]}</p>
+                    <p className="text-xs text-[#9CA3AF] uppercase">color stop 1</p>
+                  </div>
+                </li>
+                <li className="w-36 h-48 shadow-xl overflow-hidden rounded-lg flex flex-col">
+                  <div
+                    className="flex-1"
+                    style={{
+                      background: `${gradient.colors[1]}`,
+                    }}
+                  ></div>
+                  <div className="h-12 px-3 pt-1 bg-white">
+                    <p className="text-sm text-[#374151] font-bold">{gradient.colors[1]}</p>
+                    <p className="text-xs text-[#9CA3AF] uppercase">color stop 2</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div>
               <Highlight {...defaultProps} code={cssCode} language="css">
                 {({ className, style, tokens, getLineProps, getTokenProps }) => (
