@@ -6,9 +6,9 @@ function GradientCardList({ gradients }) {
   }
 
   return (
-    <ul className="grid grid-cols-2 gap-10 justify-items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <ul className="grid grid-cols-1 gap-10 justify-items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {gradients.map((item, index) => (
-        <div key={index}>
+        <div className="w-full" key={index}>
           <GradientCard item={item} />
         </div>
       ))}

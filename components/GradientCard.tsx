@@ -14,7 +14,7 @@ function GradientCard({ item }) {
   }
 
   return (
-    <li className="w-[234px] shadow-xl overflow-hidden h-[288px] rounded-lg flex flex-col hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-150">
+    <li className="md:w-[234px] shadow-xl overflow-hidden h-[288px] rounded-lg flex flex-col hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-150">
       <div
         className="flex-1"
         style={{

@@ -40,15 +40,15 @@ const GradientPage: NextPage<any> = (props) => {
         {/* <Heart gradientRef={gradientRef} /> */}
         <HeaderComponent />
 
-        <div className="md:flex md:space-x-12">
+        <div className="grid grid-col-1 md:grid-cols-6 gap-2 md:gap-16">
           <div
-            className="w-full md:w-[300px] h-80 md:h-96 rounded-xl"
+            className="w-full md:col-span-2 h-80 md:h-96 rounded-xl"
             style={{
               background: `linear-gradient(90deg, ${gradient.colors[0]} 0%, ${gradient.colors[1]} 100%)`,
             }}
           ></div>
-          <div>
-            <div className="mt-6 md:flex md:items-end md:justify-between">
+          <div className="md:col-span-4 content-start">
+            <div className="md:flex md:items-end md:justify-between">
               <div>
                 <h1 className="text-3xl text-[#374151] font-extrabold">{gradient.name}</h1>
                 <p className="text-base text-[#9CA3AF]">By {gradient.username}</p>
@@ -119,7 +119,7 @@ const GradientPage: NextPage<any> = (props) => {
             </div>
           </div>
         </div>
-        <div className="space-y-6 mt-6">
+        <div className="space-y-6 mt-12">
           <h1 className="text-xl text-[#374151] font-extrabold">More by this creator</h1>
           <GradientCardList gradients={moreGradients} />
         </div>
