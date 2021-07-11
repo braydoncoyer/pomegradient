@@ -9,6 +9,8 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import React from 'react'
 import { GradientCardList } from '../../components/GradientCardList'
 import { HeaderComponent } from '../../components/Header'
+import { toast } from 'react-toastify'
+import copy from 'copy-to-clipboard'
 
 const GradientPage: NextPage<any> = (props) => {
   const gradientRef = firestore.doc(props.path)
@@ -25,6 +27,11 @@ const GradientPage: NextPage<any> = (props) => {
     background: linear-gradient(to right, ${gradient.colors[0]}, ${gradient.colors[1]}); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     `
 
+  const handleCopyToClipBoard = () => {
+    copy(cssCode)
+    toast('CSS copied!')
+  }
+
   return (
     <AuthCheck
       fallback={
@@ -34,10 +41,6 @@ const GradientPage: NextPage<any> = (props) => {
       }
     >
       <Layout>
-        {/* {JSON.stringify(gradient)} */}
-
-        {/* <GradientContent gradient={gradient} /> */}
-        {/* <Heart gradientRef={gradientRef} /> */}
         <HeaderComponent />
 
         <div className="grid grid-col-1 md:grid-cols-6 gap-2 md:gap-16">
@@ -51,12 +54,17 @@ const GradientPage: NextPage<any> = (props) => {
             <div className="md:flex md:items-end md:justify-between">
               <div>
                 <h1 className="text-3xl text-[#374151] font-extrabold">{gradient.name}</h1>
-                <p className="text-base text-[#9CA3AF]">By {gradient.username}</p>
+                <Link href={`/${gradient.username}`}>
+                  <a className="text-base text-[#9CA3AF]">
+                    By <span className="hover:text-gray-500">{gradient.username}</span>
+                  </a>
+                </Link>
               </div>
               <div className="space-y-6 mt-6 md:space-x-4 md:space-y-0 md:flex md:justify-center md:items-center">
                 <Heart gradientRef={gradientRef} heartCount={gradient.heartCount} />
                 <button
                   type="button"
+                  onClick={handleCopyToClipBoard}
                   className="w-full md:max-w-[200px] space-x-2 inline-flex gradients-center justify-center text-[#374151] font-medium bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-[#D1D5DB] transform hover:-translate-y-0.5 transition-all duration-150 md:flex"
                 >
                   <svg
@@ -127,25 +135,40 @@ const GradientPage: NextPage<any> = (props) => {
                 </li>
               </ul>
             </div>
-            <div>
-              <Highlight {...defaultProps} code={cssCode} language="css">
-                {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                  <pre className={`${className} rounded-lg mt-6`} style={style}>
-                    {tokens.map((line, i) => (
-                      <div key={i} {...getLineProps({ line, key: i })}>
-                        {line.map((token, key, index) => (
-                          <span key="key" {...getTokenProps({ token, key, index })} />
-                        ))}
-                      </div>
-                    ))}
-                  </pre>
-                )}
-              </Highlight>
-              {/* <SyntaxHighlighter language="css" style={docco} wrapLongLines>
-              {cssCode}
-            </SyntaxHighlighter> */}
-            </div>
           </div>
+        </div>
+        <div className="mt-10">
+          <Highlight {...defaultProps} code={cssCode} language="css" theme={undefined}>
+            {({ className, style, tokens, getLineProps, getTokenProps }) => (
+              <pre className={`${className} rounded-lg mt-6 relative`} style={style}>
+                {tokens.map((line, i) => (
+                  <div key={i} {...getLineProps({ line, key: i })}>
+                    {line.map((token, key, index) => (
+                      <span key="key" {...getTokenProps({ token, key, index })} />
+                    ))}
+                  </div>
+                ))}
+                <span className="absolute top-6 right-6">
+                  <button className="focus:outline-none" onClick={handleCopyToClipBoard}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-[#9CA3AF] hover:text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </pre>
+            )}
+          </Highlight>
         </div>
         <div className="space-y-6 mt-12">
           <h1 className="text-xl text-[#374151] font-extrabold">More by this creator</h1>
@@ -197,10 +220,6 @@ export async function getStaticPaths() {
   })
 
   return {
-    // must be in this format:
-    // paths: [
-    //   { params: { username, slug }}
-    // ],
     paths,
     fallback: 'blocking',
   }
