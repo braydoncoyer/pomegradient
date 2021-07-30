@@ -28,7 +28,7 @@ const IndexPage: NextPage<any> = () => {
           ],
         }}
         twitter={{
-          handle: '@pomeradient',
+          handle: '@pomegradient',
           site: 'https://www.pomegradient.com',
           cardType: 'summary_large_image',
         }}

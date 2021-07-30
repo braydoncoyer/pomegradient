@@ -41,7 +41,7 @@ function PersonalNewsletter() {
           <div className="mt-4 sm:mt-0 sm:ml-3 group">
             <button
               type="submit"
-              className="w-full space-x-2 items-center justify-center text-white font-medium bg-gradient-to-r from-purple-700 to-pink-600 rounded-lg shadow-sm group-hover:shadow-lg py-3 px-5 border border-white border-opacity-10 transform group-hover:-translate-y-0.5 transition-all duration-150 flex"
+              className="w-full space-x-2 items-center justify-center text-white font-medium bg-gradient-to-r from-purple-700 to-pink-600 rounded-lg shadow-sm group-hover:shadow-lg py-3 px-5  transform group-hover:-translate-y-0.5 transition-all duration-150 flex"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -27,10 +27,10 @@ function Hero() {
     <div className="w-full bg-gradient-to-r from-purple-700 to-pink-600 px-4 sm:px-6 lg:px-16">
       <HeaderComponent />
       <div className="max-w-7xl mx-auto pt-12 pb-16">
-        <h1 className="text-left font-display text-white text-3xl leading-9 font-semibold sm:text-4xl sm:leading-10">
+        <h1 className="text-left font-display text-white text-3xl leading-9 sm:text-4xl sm:leading-10">
           {' '}
-          Beautiful hand-crafted gradients,{' '}
-          <span className="sm:block text-purple-300">curated by the community.</span>
+          Explore a constantly updated library of gradients,{' '}
+          <span className="block text-purple-300">curated by the community.</span>
         </h1>
         <form onSubmit={handleSubmit(pomegradientOnSubmit)} className="mt-6 sm:max-w-lg sm:flex">
           <div className="min-w-0 flex-1">
