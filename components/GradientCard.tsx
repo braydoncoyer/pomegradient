@@ -23,7 +23,7 @@ function GradientCard({ item }) {
           }}
         ></div>
       </Link>
-      <div className="h-[70px] p-[9px] bg-white">
+      <div className="min-h-[70px] p-[9px] bg-white">
         <div className="flex justify-between items-center">
           <Link href={`/${item.username}/${item.slug}`}>
             <a

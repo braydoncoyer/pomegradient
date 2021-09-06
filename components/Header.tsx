@@ -118,7 +118,7 @@ function HeaderComponent() {
           </div>
 
           <Disclosure.Panel className="sm:hidden w-full bg-gradient-to-r from-purple-700 to-pink-600">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-3 space-y-3">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
               <a
                 href="#"
@@ -126,36 +126,36 @@ function HeaderComponent() {
               >
                 Explore
               </a>
-            </div>
-            {user ? (
-              <div className="pt-4 pb-3 border-t border-white border-opacity-50">
-                <div className="flex items-center px-5">
-                  <div className="flex-shrink-0">
-                    <img className="h-10 w-10 rounded-full" src={user.photoURL} alt="" />
+              {user ? (
+                <div className="pt-4 pb-3 border-t border-white border-opacity-50">
+                  <div className="flex items-center px-5">
+                    <div className="flex-shrink-0">
+                      <img className="h-10 w-10 rounded-full" src={user.photoURL} alt="" />
+                    </div>
+                    <div className="ml-3">
+                      <div className="text-base font-medium text-white">{user.displayName}</div>
+                      <div className="text-sm font-medium text-gray-300">{user.email}</div>
+                    </div>
                   </div>
-                  <div className="ml-3">
-                    <div className="text-base font-medium text-white">{user.displayName}</div>
-                    <div className="text-sm font-medium text-gray-300">{user.email}</div>
-                  </div>
-                </div>
-                <div className="mt-3 px-2 space-y-1">
-                  <Link href={`/${username}`}>
-                    <a className="bg-white bg-opacity-0 hover:bg-opacity-30 block px-3 py-2 rounded-md text-base font-medium text-white border border-white border-opacity-20 transform transition-all duration-150">
-                      Your Profile
-                    </a>
-                  </Link>
+                  <div className="mt-3 px-2 space-y-1">
+                    <Link href={`/${username}`}>
+                      <a className="bg-white bg-opacity-0 hover:bg-opacity-30 block px-3 py-2 rounded-md text-base font-medium text-white border border-white border-opacity-20 transform transition-all duration-150">
+                        Your Profile
+                      </a>
+                    </Link>
 
-                  <button
-                    onClick={() => auth.signOut()}
-                    className="w-full text-left bg-white bg-opacity-0 hover:bg-opacity-30 block px-3 py-2 rounded-md text-base font-medium text-white  border border-white border-opacity-20 transform transition-all duration-150"
-                  >
-                    Sign out
-                  </button>
+                    <button
+                      onClick={() => auth.signOut()}
+                      className="w-full text-left bg-white bg-opacity-0 hover:bg-opacity-30 block px-3 py-2 rounded-md text-base font-medium text-white  border border-white border-opacity-20 transform transition-all duration-150"
+                    >
+                      Sign out
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <SignInButton />
-            )}
+              ) : (
+                <SignInButton />
+              )}
+            </div>
           </Disclosure.Panel>
         </>
       )}
@@ -173,7 +173,7 @@ function SignInButton() {
     <button
       onClick={signInWithGoogle}
       type="button"
-      className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
     >
       <img className="-ml-1 mr-3 h-5 w-5" src="/google_logo.png" alt="google" />
       Sign in with Google
