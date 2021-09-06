@@ -1,18 +1,12 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { Layout } from '../components/Layout'
 import { GradientCardList } from '../components/GradientCardList'
-import { Button } from '../components/Button'
 import { PlusSmIcon } from '@heroicons/react/solid'
 
-import { Footer } from '../components/Footer'
 import { Hero } from '../components/Hero'
-
 import { firestore, fromMillis, postToJSON } from '../lib/firebase'
-
-import { useContext, useState } from 'react'
-import Link from 'next/link'
-import { UserContext } from '../lib/context'
 import { PersonalNewsletter } from '../components/PersonalNewsletter'
+import { useState } from 'react'
 
 // Max post to query per page
 const LIMIT = 12
@@ -21,7 +15,6 @@ const IndexPage: NextPage<any> = (props) => {
   const [gradients, setGradients] = useState(props.gradients)
   const [loading, setLoading] = useState(false)
   const [gradientsEnd, setGradientsEnd] = useState(false)
-  const { user } = useContext(UserContext)
 
   const getMoreGradients = async () => {
     setLoading(true)
@@ -70,7 +63,7 @@ const IndexPage: NextPage<any> = (props) => {
               <button
                 onClick={getMoreGradients}
                 type="button"
-                className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+                className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
               >
                 <PlusSmIcon className="-ml-1.5 mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                 <span>Load More</span>

@@ -15,12 +15,14 @@ function GradientCard({ item }) {
 
   return (
     <li className="md:w-[234px] shadow-xl overflow-hidden h-[288px] rounded-lg flex flex-col hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-150">
-      <div
-        className="flex-1"
-        style={{
-          background: `linear-gradient(90deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`,
-        }}
-      ></div>
+      <Link href={`/${item.username}/${item.slug}`}>
+        <div
+          className="flex-1 cursor-pointer"
+          style={{
+            background: `linear-gradient(90deg, ${item.colors[0]} 0%, ${item.colors[1]} 100%)`,
+          }}
+        ></div>
+      </Link>
       <div className="h-[70px] p-[9px] bg-white">
         <div className="flex justify-between items-center">
           <Link href={`/${item.username}/${item.slug}`}>
@@ -33,17 +35,6 @@ function GradientCard({ item }) {
               {item.name}
             </a>
           </Link>
-
-          {/* <Link href={`/gradient/${item.name}`}>
-            <a
-              className={`text-lg font-extrabold leading-none`}
-              style={{
-                color: item.colors[0],
-              }}
-            >
-              {item.name}
-            </a>
-          </Link> */}
 
           <button className="focus:outline-none" onClick={handleCopyToClipBoard}>
             <svg
@@ -63,7 +54,9 @@ function GradientCard({ item }) {
           </button>
         </div>
         <Link href={`/${item.username}`}>
-          <a className="font-medium text-[#9CA3AF] cursor-pointer">by {item.username}</a>
+          <a className="font-medium text-[#9CA3AF] cursor-pointer">
+            by <span className="hover:text-gray-500">{item.username}</span>
+          </a>
         </Link>
       </div>
     </li>

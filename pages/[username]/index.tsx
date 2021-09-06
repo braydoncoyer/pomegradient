@@ -6,8 +6,8 @@ import { getUserWithUsername, postToJSON } from '../../lib/firebase'
 
 const UserPage: NextPage<any> = ({ user, gradients }) => {
   return (
-    <Layout>
-      <AuthCheck>
+    <AuthCheck>
+      <Layout>
         <div className="flex flex-col justify-center items-center space-y-4 mb-8">
           <img className="w-24 h-24 rounded-full" src={user.photoURL} alt="profile" />
           <p className="text-2xl text-gray-900 font-semibold">{user.username}</p>
@@ -27,8 +27,8 @@ const UserPage: NextPage<any> = ({ user, gradients }) => {
         ) : (
           <p>This user has no gradients created.</p>
         )}
-      </AuthCheck>
-    </Layout>
+      </Layout>
+    </AuthCheck>
   )
 }
 export default UserPage

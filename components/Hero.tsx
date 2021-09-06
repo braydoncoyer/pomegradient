@@ -1,15 +1,13 @@
-import { HeaderComponent } from './Header'
 import Link from 'next/link'
 
 function Hero() {
   return (
     <div className="w-full bg-gradient-to-r from-purple-700 to-pink-600 px-4 sm:px-6 lg:px-16">
-      <HeaderComponent />
       <div className="max-w-7xl mx-auto pt-12 pb-16">
         <div className="lg:flex lg:justify-between lg:items-center my-12 space-y-6">
-          <h1 className="text-left font-display text-white text-3xl leading-9 font-semibold sm:text-4xl sm:leading-10">
+          <h1 className="text-left font-display text-white text-3xl leading-9 sm:text-4xl sm:leading-10">
             {' '}
-            Beautiful hand-crafted gradients,{' '}
+            Explore a constantly updated library of gradients,{' '}
             <span className="sm:block text-purple-300">curated by the community.</span>
           </h1>
           <div className="md:flex md:justify-center lg:justify-end md:items-center md:space-x-4 md:flex-1 md:space-y-0">

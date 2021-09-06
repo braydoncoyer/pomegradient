@@ -11,6 +11,7 @@ import Head from 'next/head'
 // Needed for Tailwind
 import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import { HeaderComponent } from '../components/Header'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const userData = useUserData()
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <UserContext.Provider value={userData}>
+        <HeaderComponent />
         <PlausibleProvider domain="pomegradient.com">
           <Component {...pageProps} />
         </PlausibleProvider>

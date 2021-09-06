@@ -30,7 +30,7 @@ export default function Heart({ gradientRef, heartCount }) {
 
   return heartDoc?.exists ? (
     <button
-      className="w-full md:max-w-[200px] space-x-2 inline-flex items-center justify-center text-[#374151] font-medium bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-[#D1D5DB] transform hover:-translate-y-0.5 transition-all duration-150 md:flex"
+      className="w-full focus:outline-none md:max-w-[200px] space-x-2 inline-flex items-center justify-center text-[#374151] font-medium bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-[#D1D5DB] transform hover:-translate-y-0.5 transition-all duration-150 md:flex"
       onClick={removeHeart}
     >
       <svg
@@ -49,7 +49,7 @@ export default function Heart({ gradientRef, heartCount }) {
     </button>
   ) : (
     <button
-      className="w-full md:max-w-[200px] space-x-2 inline-flex items-center justify-center text-[#374151] font-medium bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-[#D1D5DB] transform hover:-translate-y-0.5 transition-all duration-150 md:flex"
+      className="w-full focus:outline-none md:max-w-[200px] space-x-2 inline-flex items-center justify-center text-[#374151] font-medium bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg shadow-sm hover:shadow-lg py-3 px-5 border border-[#D1D5DB] transform hover:-translate-y-0.5 transition-all duration-150 md:flex"
       onClick={addHeart}
     >
       <svg
